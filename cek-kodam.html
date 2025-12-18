@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tes Kodam Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 to-purple-900 min-h-screen flex items-center justify-center text-white">
+
+  <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center mb-2">🔮 Tes Kodam 🔮</h1>
+    <p class="text-center text-sm mb-6 opacity-80">Hanya hiburan, jangan dianggap serius 😄</p>
+
+    <div class="mb-4">
+      <label class="block mb-2 text-sm">Nama kamu</label>
+      <input id="nama" type="text" placeholder="Masukkan nama"
+        class="w-full px-4 py-2 rounded-xl text-black focus:outline-none" />
+    </div>
+
+    <button onclick="cekKodam()"
+      class="w-full bg-purple-600 hover:bg-purple-700 transition py-2 rounded-xl font-semibold">
+      Cek Kodam
+    </button>
+
+    <div id="hasil" class="mt-6 hidden text-center">
+      <p class="text-lg">Kodam yang mendampingi <span id="namaHasil" class="font-bold"></span> adalah:</p>
+      <img id="fotoKodam" class="mx-auto mt-4 w-40 h-40 object-cover rounded-2xl shadow-lg border-2 border-purple-400" />
+      <p id="kodam" class="text-2xl font-extrabold mt-3"></p>
+      <p id="deskripsi" class="text-sm mt-2 opacity-90"></p>
+      <p id="rarity" class="mt-2 text-xs font-semibold"></p>
+    </div>
+  </div>
+
+  <script>
+    const dataKodam = [
+      { nama: "Si Imut", desc: "sasimok banget loh ya 😡", rarity: "LEGENDARY (1%)", img: "img/j8.jpg" },
+      { nama: "Si imut", desc: "Pakek celana yang bener mut, jangan kedodoran terus loh ya 😹", rarity: "RARE (5%)", img: "img/j9.jpg" },
+      { nama: "Mas Gatot", desc: "Jambul barunya bagus banget loh ya 😹", rarity: "RARE (8%)", img: "img/j10.jpg" },
+      { nama: "Mas Narji", desc: " kurangin makan ayam goreng khas Boolali loh yah 😹", rarity: "UNCOMMON (20%)", img: "img/j5.jpg" },
+      { nama: "Mas Amba", desc: "suka banget keluar dikit 😹", rarity: "UNCOMMON (30%)", img: "img/j1.jpg" },
+      { nama: "Pendekar Bayangan", desc: "Tenang, misterius, dan sulit ditebak.", rarity: "COMMON (36%)", img: "img/j3.jpg" }
+    ];
+
+    function cekKodam() {
+      const namaInput = document.getElementById('nama').value.trim();
+      if (!namaInput) {
+        alert('Nama tidak boleh kosong!');
+        return;
+      }
+
+      const random = Math.floor(Math.random() * dataKodam.length);
+      const kodam = dataKodam[random];
+
+      document.getElementById('namaHasil').innerText = namaInput;
+      document.getElementById('kodam').innerText = kodam.nama;
+      document.getElementById('deskripsi').innerText = kodam.desc;
+      document.getElementById('rarity').innerText = kodam.rarity;
+      document.getElementById('fotoKodam').src = kodam.img;
+      document.getElementById('hasil').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
